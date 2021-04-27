@@ -7,16 +7,19 @@ jobs:
   windows-run:
     runs-on: ['${{ matrix.os }}']
     strategy:
+      fail-fast: false
       matrix:
         include:
           - os: windows-2016
             generator: Visual Studio 15 2017
             cxx_compiler: cl
             c_compiler: cl
+            build_type: relwithdebinfo
           - os: windows-2019
             generator: Visual Studio 16 2019
             cxx_compiler: cl
             c_compiler: cl
+            build_type: relwithdebinfo
     steps:
       - name: Get oneTBB
         run: git clone https://github.com/oneapi-src/oneTBB.git --depth 1 onetbb
