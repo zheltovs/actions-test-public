@@ -5,7 +5,7 @@ on:
 
 jobs:
   windows-run:
-    runs-on: [windows-2019]
+    runs-on: ['${{ matrix.os }}']
     strategy:
       matrix:
         include:
@@ -24,4 +24,3 @@ jobs:
           cmake -G "${{ matrix.generator }}" -A x64 ..
           cmake --build . --config relwithdebinfo -j
           ctest -C relwithdebinfo
-          
