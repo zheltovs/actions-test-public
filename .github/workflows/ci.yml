@@ -1,0 +1,13 @@
+name: CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  macos-run:
+    runs-on: [macos-10.15]
+    steps:
+      - run: |
+          sw_vers
+          clang++ --version
+          
