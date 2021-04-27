@@ -4,10 +4,24 @@ on:
   workflow_dispatch:
 
 jobs:
-  macos-run:
-    runs-on: [macos-10.15]
+  windows-run:
+    runs-on: [windows-2019]
+    strategy:
+      matrix:
+        include:
+          - os: windows-2016
+            generator: Visual Studio 15 2017
+          - os: windows-2019
+            generator: Visual Studio 16 2019
     steps:
-      - run: |
-          sw_vers
-          clang++ --version
+      - name: Get oneTBB
+        run: git clone https://github.com/oneapi-src/oneTBB.git --depth 1 onetbb
+      - name: Run testing
+        run: |
+          cd onetbb
+          mkdir build
+          cd build
+          cmake -G "${{ matrix.generator }}" -A x64 ..
+          cmake --build . --config relwithdebinfo -j
+          ctest -C relwithdebinfo
           
