@@ -11,8 +11,12 @@ jobs:
         include:
           - os: windows-2016
             generator: Visual Studio 15 2017
+            cxx_compiler: cl
+            c_compiler: cl
           - os: windows-2019
             generator: Visual Studio 16 2019
+            cxx_compiler: cl
+            c_compiler: cl
     steps:
       - name: Get oneTBB
         run: git clone https://github.com/oneapi-src/oneTBB.git --depth 1 onetbb
@@ -21,6 +25,8 @@ jobs:
           cd onetbb
           mkdir build
           cd build
-          cmake -G "${{ matrix.generator }}" -A x64 ..
-          cmake --build . --config relwithdebinfo -j
-          ctest -C relwithdebinfo
+          cmake -G "${{ matrix.generator }}" -A x64 `
+            -DCMAKE_CXX_COMPILER=${{ matrix.cxx_compiler }} -DTBB_CPF=ON -DCMAKE_C_COMPILER=${{ matrix.c_compiler }} ..
+          cmake --build . --config ${{ matrix.build_type }} -j
+          ctest -C ${{ matrix.build_type }}
+          
