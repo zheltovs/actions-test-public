@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  windows-run:
+  ubuntu-run:
     runs-on: ['${{ matrix.os }}']
     strategy:
       fail-fast: false
@@ -23,7 +23,7 @@ jobs:
           cd onetbb
           mkdir build
           cd build
-          cmake -G "${{ matrix.generator }}" -A x64 `
+          cmake -G "${{ matrix.generator }}" -A x64 \
             -DCMAKE_CXX_COMPILER=${{ matrix.cxx_compiler }} -DTBB_CPF=ON -DCMAKE_C_COMPILER=${{ matrix.c_compiler }} ..
           cmake --build . --config ${{ matrix.build_type }} -j
           ctest -C ${{ matrix.build_type }}
