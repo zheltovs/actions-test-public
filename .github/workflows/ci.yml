@@ -10,16 +10,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: windows-2016
-            generator: Visual Studio 15 2017
-            cxx_compiler: cl
-            c_compiler: cl
-            build_type: relwithdebinfo
-          - os: windows-2019
-            generator: Visual Studio 16 2019
-            cxx_compiler: cl
-            c_compiler: cl
-            build_type: relwithdebinfo
+          - os: ubuntu-20.04
+            cxx_standard: 20
+            cxx_compiler: g++-10
+            c_compiler: gcc-10
+            build_type: debug
     steps:
       - name: Get oneTBB
         run: git clone https://github.com/oneapi-src/oneTBB.git --depth 1 onetbb
