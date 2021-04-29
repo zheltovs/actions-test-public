@@ -5,7 +5,7 @@ on:
 
 jobs:
   ubuntu-run:
-    runs-on: ['${{ matrix.os }}']
+    runs-on: [ubuntu-18.04]
     steps:
       - name: Get oneTBB
         run: git clone https://github.com/oneapi-src/oneTBB.git --depth 1 onetbb
