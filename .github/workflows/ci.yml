@@ -1,7 +1,15 @@
 name: CI
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [master]
+
+  pull_request:
+    branches: [master]
+    types:
+      - opened
+      - synchronize
+      - reopened
 
 jobs:
   ubuntu-run:
@@ -11,15 +19,10 @@ jobs:
         run: git clone https://github.com/oneapi-src/oneTBB.git --depth 1 onetbb
       - name: Run testing
         run: |
-          tar -czvf onetbb-${RANDOM}.tar.gz onetbb
-          # cd onetbb
-          # mkdir build
-          # cd build
-          # cmake -DTBB4PY_BUILD=ON -DCMAKE_CXX_COMPILER=g++ -DCMAKE_C_COMPILER=gcc ..
-          # make VERBOSE=1 -j2 python_build
-          # ctest -R python_test --output-on-failure --timeout 180
-      - uses: actions/upload-artifact@v2
-        with:
-          name: test
-          path: onetbb-*.tar.gz
+          cd onetbb
+          mkdir build
+          cd build
+          cmake -DTBB4PY_BUILD=ON -DCMAKE_CXX_COMPILER=g++ -DCMAKE_C_COMPILER=gcc ..
+          make VERBOSE=1 -j2 python_build
+          ctest -R python_test --output-on-failure --timeout 180
           
