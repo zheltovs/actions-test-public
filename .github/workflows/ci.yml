@@ -1,5 +1,8 @@
 name: CI
 
+env:
+  my_var: test
+
 on:
   push:
     branches: [main]
@@ -14,12 +17,12 @@ on:
 jobs:
   ubuntu-run:
     runs-on: [ubuntu-18.04]
-    env:
-      my_var: test
     steps:
       - name: Get oneTBB
         run: git clone https://github.com/oneapi-src/oneTBB.git --depth 1 onetbb
       - name: Run testing
         env:
           TEST: ${{ env.my_var }}
-        run: echo $TEST
+        run: |
+          echo $TEST
+          echo $my_var
