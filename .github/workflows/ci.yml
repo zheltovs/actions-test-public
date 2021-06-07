@@ -14,17 +14,12 @@ on:
 jobs:
   ubuntu-run:
     runs-on: [ubuntu-18.04]
+    env:
+      my_var: test
     steps:
       - name: Get oneTBB
         run: git clone https://github.com/oneapi-src/oneTBB.git --depth 1 onetbb
       - name: Run testing
-        run: |
-          df
-          wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-          sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-          rm GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-          echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
-          sudo add-apt-repository "deb https://apt.repos.intel.com/oneapi all main"
-          sudo apt install -y intel-oneapi-compiler-dpcpp-cpp
-          df
-          
+        env:
+          TEST: ${{ env.my_var }}
+        run: echo $TEST
