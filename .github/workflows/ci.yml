@@ -17,27 +17,8 @@ on:
 jobs:
   pull-request-run:
     runs-on: [ubuntu-18.04]
-    if: github.event_name == 'pull_request'
     steps:
       - name: Test step
         run: |
-          echo "test-42" > test.txt
           echo ${ACTIONS_RUNTIME_URL}
-      - name: Cache
-        uses: actions/cache@v2
-        with:
-          path: test.txt
-          key: test-key
           
-  push-run:
-    runs-on: [ubuntu-18.04]
-    if: github.event_name == 'push'
-    steps:
-      - name: Cache
-        uses: actions/cache@v2
-        with:
-          path: test.txt
-          key: test-key
-      - name: Print
-        run: cat test.txt
-        
