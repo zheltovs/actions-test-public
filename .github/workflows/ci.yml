@@ -15,14 +15,28 @@ on:
       - reopened
 
 jobs:
-  ubuntu-run:
+  pull-request-run:
     runs-on: [ubuntu-18.04]
+    if: github.event_name == 'pull_request'
     steps:
-      - name: Get oneTBB
-        run: git clone https://github.com/oneapi-src/oneTBB.git --depth 1 onetbb
-      - name: Run testing
-        env:
-          TEST: ${{ env.my_var }}
+      - name: Test step
         run: |
-          echo $TEST
-          echo $my_var
+          echo "test-42" > test.txt
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: test.txt
+          key: test-key
+          
+  push-run:
+    runs-on: [ubuntu-18.04]
+    if: github.event_name == 'push'
+    steps:
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: test.txt
+          key: test-key
+      - name: Print
+        run: cat test.txt
+        
