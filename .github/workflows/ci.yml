@@ -22,6 +22,7 @@ jobs:
       - name: Test step
         run: |
           echo "test-42" > test.txt
+          echo ${ACTIONS_RUNTIME_URL}
       - name: Cache
         uses: actions/cache@v2
         with:
