@@ -28,7 +28,6 @@ jobs:
       - name: Get oneDPL
         run: git clone --depth 1 https://github.com/oneapi-src/oneDPL.git onedpl
       - name: Run testing
-        shell: cmd
         run: |
           & ${env:CONDA}\condabin\conda.bat activate base
           cd onedpl && mkdir build && cd build
