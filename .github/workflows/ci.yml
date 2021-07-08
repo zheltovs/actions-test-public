@@ -22,5 +22,5 @@ jobs:
       #  run: git clone --depth 1 https://github.com/oneapi-src/oneDPL.git
       - name: Install oneAPI Compiler
         run: |
-          & ${env:CONDA}\condabin\conda.bat init powershell
           & ${env:CONDA}\condabin\conda.bat activate base
+          conda install -c intel dpcpp_impl_win-64
