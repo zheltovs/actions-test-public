@@ -22,7 +22,7 @@ jobs:
       - name: Test
         shell: cmd
         run: |
-          %CONDA%\condabin\conda.bat activate base
+          %CONDA%/condabin/conda.bat activate base
           echo "Test message"
           exit 1
       - name: Init conda
