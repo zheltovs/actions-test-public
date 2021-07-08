@@ -21,11 +21,12 @@ jobs:
       - name: Init conda
         shell: cmd
         run: |
-          %CONDA%\condabin\conda.bat init cmd.exe
+          ${env:CONDA}\condabin\conda.bat init powershell
+      - name: Install oneAPI Compiler
+        run: |
+          & ${env:CONDA}\condabin\conda.bat activate base
+          conda install -c intel dpcpp_impl_win-64
       - name: Get oneDPL
         run: git clone --depth 1 https://github.com/oneapi-src/oneDPL.git onedpl
       - name: Run testing
-        shell: cmd
-        run: |
-          %CONDA%\condabin\conda.bat activate base
-          cd onedpl && mkdir build && cd build
+        run: .\run.ps1
