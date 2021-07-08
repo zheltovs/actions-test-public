@@ -40,5 +40,5 @@ jobs:
           set INCLUDE=%CONDA_PREFIX%\Library\include;%INCLUDE%
           set LIB=%CONDA_PREFIX%\Library\lib;%LIB%
           cmake -G "Ninja" -DCMAKE_TOOLCHAIN_FILE=../cmake/windows-dpcpp-toolchain.cmake -DCMAKE_CXX_COMPILER=dpcpp -DONEDPL_BACKEND=dpcpp -DONEDPL_DEVICE_TYPE=CPU ..
-          ninja -j 0 -v
+          ninja -j 0 -v for_each.pass
           ctest --timeout 360 --output-on-failure
