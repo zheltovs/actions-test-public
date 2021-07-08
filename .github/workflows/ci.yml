@@ -18,10 +18,11 @@ jobs:
   windows-testing:
     runs-on: [windows-2019]
     steps:
-      - name: Get oneDPL
-        run: git clone --depth 1 https://github.com/oneapi-src/oneDPL.git
+      #- name: Get oneDPL
+      #  run: git clone --depth 1 https://github.com/oneapi-src/oneDPL.git
       - name: Install oneAPI Compiler
+        shell: cmd
         run: |
-          ${env:CONDA}\Scripts\activate
+          %CONDA%\Scripts\activate
           conda install -c intel dpcpp_impl_win-64
           dpcpp --version
