@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Init conda
         run: |
-          ${env:CONDA}\condabin\conda.bat init powershell
+          & ${env:CONDA}\condabin\conda.bat init powershell
       - name: Install oneAPI Compiler
         run: |
           & ${env:CONDA}\condabin\conda.bat activate base
