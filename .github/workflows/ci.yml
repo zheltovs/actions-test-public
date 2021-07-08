@@ -26,6 +26,4 @@ jobs:
       - name: Run testing
         run: |
           & ${env:CONDA}\condabin\conda.bat activate base
-          cd onedpl
-          mkdir build
-          cd build
+          cd onedpl && mkdir build && cd build
