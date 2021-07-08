@@ -27,3 +27,4 @@ jobs:
         run: |
           & ${env:CONDA}\condabin\conda.bat activate base
           conda install -c intel dpcpp_impl_win-64
+          dpcpp --version
