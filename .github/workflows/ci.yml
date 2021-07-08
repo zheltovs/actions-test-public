@@ -15,11 +15,13 @@ on:
       - reopened
 
 jobs:
-  pull-request-run:
-    runs-on: [ubuntu-18.04]
+  windows-testing:
+    runs-on: [windows-2019]
     steps:
-      - uses: actions/checkout@v2
-      - name: Test step
+      - name: Get oneDPL
+        run: git clone --depth 1 https://github.com/oneapi-src/oneDPL.git
+      - name: Install oneAPI Compiler
         run: |
-          echo ${{ github.sha }}
-          
+          ${env:CONDA}\Scripts\activate
+          conda install -c intel dpcpp_impl_win-64
+          dpcpp --version
