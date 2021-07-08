@@ -19,7 +19,6 @@ jobs:
     runs-on: [windows-2019]
     steps:
       - name: Init conda
-        shell: cmd
         run: |
           ${env:CONDA}\condabin\conda.bat init powershell
       - name: Install oneAPI Compiler
