@@ -21,6 +21,6 @@ jobs:
       #- name: Get oneDPL
       #  run: git clone --depth 1 https://github.com/oneapi-src/oneDPL.git
       - name: Install oneAPI Compiler
-        shell: cmd
         run: |
-          echo test
+          $CONDA/bin/conda init powershell
+          $CONDA/bin/conda activate base
