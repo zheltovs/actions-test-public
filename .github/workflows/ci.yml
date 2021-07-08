@@ -24,6 +24,11 @@ jobs:
         run: |
           call %CONDA%/condabin/conda.bat activate base
           conda install -c intel dpcpp_win-64
+      - name: Install oneTBB
+        shell: cmd
+        run: |
+          call %CONDA%/condabin/conda.bat activate base
+          conda install -c intel tbb-devel
       - name: Get oneDPL
         run: git clone --depth 1 https://github.com/oneapi-src/oneDPL.git onedpl
       - name: Run testing
@@ -32,6 +37,8 @@ jobs:
           call %CONDA%/condabin/conda.bat activate base
           cd onedpl && mkdir build && cd build
           call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+          set INCLUDE=%CONDA_PREFIX%\Library\include;%INCLUDE%
+          set LIB=%CONDA_PREFIX%\Library\lib;%LIB%
           cmake -G "Ninja" -DCMAKE_TOOLCHAIN_FILE=../cmake/windows-dpcpp-toolchain.cmake -DCMAKE_CXX_COMPILER=dpcpp -DONEDPL_BACKEND=dpcpp -DONEDPL_DEVICE_TYPE=CPU ..
           ninja -j -v
           ctest --timeout 360 --output-on-failure
