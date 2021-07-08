@@ -23,7 +23,4 @@ jobs:
       - name: Install oneAPI Compiler
         shell: cmd
         run: |
-          %CONDA%\Scripts\activate
           echo test
-          conda install -c intel dpcpp_impl_win-64
-          dpcpp --version
