@@ -18,22 +18,20 @@ jobs:
   windows-testing:
     runs-on: [windows-2019]
     steps:
-      - name: Init conda
-        run: |
-          & ${env:CONDA}\condabin\conda.bat init powershell
+      #- name: Init conda
+      #  run: |
+      #    & ${env:CONDA}\condabin\conda.bat init powershell
       - name: Install oneAPI Compiler
         run: |
-          & ${env:CONDA}\condabin\conda.bat activate base
+          %CONDA%\condabin\conda.bat activate base
           conda install -c intel dpcpp_impl_win-64
-          dpcpp --version
       - name: Get oneDPL
         run: git clone --depth 1 https://github.com/oneapi-src/oneDPL.git onedpl
       - name: Run testing
         run: |
-          & ${env:CONDA}\condabin\conda.bat activate base
-          cd onedpl
-          mkdir build
-          cd build
+          %CONDA%\condabin\conda.bat activate base
+          "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+          cd onedpl && mkdir build && cd build
           cmake -G "Ninja" -DCMAKE_TOOLCHAIN_FILE=../cmake/windows-dpcpp-toolchain.cmake -DCMAKE_CXX_COMPILER=dpcpp -DONEDPL_BACKEND=dpcpp -DONEDPL_DEVICE_TYPE=CPU ..
           ninja -j -v
           ctest --timeout 360 --output-on-failure
