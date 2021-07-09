@@ -41,5 +41,5 @@ jobs:
           set LIB=%CONDA_PREFIX%\Library\lib;%LIB%
           set OCL_ICD_FILENAMES=%CONDA_PREFIX%\Library\lib\intelocl64.dll
           cmake -G "Ninja" -DCMAKE_TOOLCHAIN_FILE=../cmake/windows-dpcpp-toolchain.cmake -DCMAKE_CXX_COMPILER=dpcpp -DONEDPL_BACKEND=dpcpp -DONEDPL_DEVICE_TYPE=CPU -DCMAKE_BUILD_TYPE=release ..
-          ninja -j 0 -v build-all
+          ninja -j 2 -v build-all
           ctest --timeout 360 -C release --output-on-failure
