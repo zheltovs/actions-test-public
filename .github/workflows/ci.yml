@@ -26,6 +26,8 @@ jobs:
           rm GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
           echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
           sudo apt update
+          wget https://apt.repos.intel.com/oneapi/dists/all/main/binary-amd64/Packages.gz
+          ls -la
 
   windows-testing:
     runs-on: [windows-2019]
