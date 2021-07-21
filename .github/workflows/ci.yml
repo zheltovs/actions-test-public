@@ -15,6 +15,18 @@ on:
       - reopened
 
 jobs:
+  test-job:
+    runs-on: [ubuntu-20.04]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test
+        run: |
+          wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+          sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+          rm GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+          echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
+          apt update
+
   windows-testing:
     runs-on: [windows-2019]
     steps:
@@ -22,6 +34,7 @@ jobs:
       - name: Install oneAPI Compiler
         shell: cmd
         run: |
+          exit 1
           call %CONDA%/condabin/conda.bat activate base
           conda install -c intel dpcpp_win-64
       - name: Install oneTBB
