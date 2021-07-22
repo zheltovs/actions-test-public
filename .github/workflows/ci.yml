@@ -37,7 +37,7 @@ jobs:
       - name: Install oneAPI Compiler
         shell: cmd
         run: |
-          powershell Write-Warning "::debug::test"
+          powershell Write-Output "::debug::test"
           exit 1
           call %CONDA%/condabin/conda.bat activate base
           conda install -c intel dpcpp_win-64
