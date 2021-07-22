@@ -37,8 +37,8 @@ jobs:
       - name: Install oneAPI Compiler
         shell: cmd
         run: |
-          echo ::debug::test
-          exit 1
+          echo ::warning::hjsdajfja klsdfk alksjdlfjlk aslkdflkasd
+          echo ::debug::hjsdajfja klsdfk alksjdlfjlk aslkdflkasd
           call %CONDA%/condabin/conda.bat activate base
           conda install -c intel dpcpp_win-64
       - name: Install oneTBB
