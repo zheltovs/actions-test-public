@@ -26,6 +26,15 @@ jobs:
           echo "::set-output name=TEST::$(((EPOCHSECONDS/86400+1)%2))"
       - name: Test
         run: echo ${{ steps.test.outputs.TEST }}
+  
+  dependent-job:
+    needs: [test-job]
+    runs-on: [ubuntu-18.04]
+    env: 
+      TEST: ${{ needs.test-job.outputs.TEST }}
+    steps:
+      - run: |
+          echo ${TEST}
 
   windows-testing:
     runs-on: [windows-2019]
