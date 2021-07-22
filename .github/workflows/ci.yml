@@ -37,7 +37,6 @@ jobs:
       - name: Install oneAPI Compiler
         shell: cmd
         run: |
-          echo ::warning::hjsdajfja klsdfk alksjdlfjlk aslkdflkasd
           echo ::debug::hjsdajfja klsdfk alksjdlfjlk aslkdflkasd
           exit 1
           call %CONDA%/condabin/conda.bat activate base
