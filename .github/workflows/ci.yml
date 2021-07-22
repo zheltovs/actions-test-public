@@ -18,9 +18,9 @@ jobs:
   test-job:
     runs-on: [ubuntu-20.04]
     outputs:
-      TEST: ${{ steps.automerge.outputs.TEST }}
+      TEST: ${{ steps.test.outputs.TEST }}
     steps:
-      - name: Set automerge status
+      - name: test
         id: test
         run: |
           echo "::set-output name=TEST::$(((EPOCHSECONDS/86400+1)%2))"
