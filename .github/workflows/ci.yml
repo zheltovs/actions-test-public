@@ -17,18 +17,15 @@ on:
 jobs:
   test-job:
     runs-on: [ubuntu-20.04]
+    outputs:
+      TEST: ${{ steps.automerge.outputs.TEST }}
     steps:
-      - uses: actions/checkout@v2
-      - name: Test
+      - name: Set automerge status
+        id: test
         run: |
-          exit 0
-          wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-          sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-          rm GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-          echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
-          sudo apt update
-          wget https://apt.repos.intel.com/oneapi/dists/all/main/binary-amd64/Packages.gz
-          ls -la
+          echo "::set-output name=TEST::$(((EPOCHSECONDS/86400+1)%2))"
+      - name: Test
+        run: echo ${{ steps.test.outputs.TEST }}
 
   windows-testing:
     runs-on: [windows-2019]
