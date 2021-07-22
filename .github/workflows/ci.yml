@@ -35,6 +35,7 @@ jobs:
     steps:
       - run: |
           echo ${TEST}
+          echo ${{ needs.test-job.outputs.TEST }}
 
   windows-testing:
     runs-on: [windows-2019]
