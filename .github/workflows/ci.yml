@@ -15,28 +15,14 @@ on:
       - reopened
 
 jobs:
-  test-job:
+  linux-testing:
     runs-on: [ubuntu-20.04]
-    outputs:
-      TEST: ${{ steps.test.outputs.TEST }}
     steps:
-      - name: test
-        id: test
-        run: |
-          echo "::set-output name=TEST::$(((EPOCHSECONDS/86400+1)%2))"
       - name: Test
-        run: echo ${{ steps.test.outputs.TEST }}
+        run: |
+          conda activate
+          conda install -c intel dpcpp_linux-64
   
-  dependent-job:
-    needs: [test-job]
-    runs-on: [ubuntu-18.04]
-    env: 
-      TEST: ${{ needs.test-job.outputs.TEST }}
-    steps:
-      - run: |
-          echo ${TEST}
-          echo ${{ needs.test-job.outputs.TEST }}
-
   windows-testing:
     runs-on: [windows-2019]
     steps:
@@ -45,7 +31,7 @@ jobs:
         shell: cmd
         run: |
           echo ::debug::hjsdajfja klsdfk alksjdlfjlk aslkdflkasd
-          exit 1
+          exit 0
           call %CONDA%/condabin/conda.bat activate base
           conda install -c intel dpcpp_win-64
       - name: Install oneTBB
