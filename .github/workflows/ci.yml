@@ -19,9 +19,14 @@ jobs:
     runs-on: [ubuntu-20.04]
     steps:
       - name: Test
-        run: conda init
-      - name: Test
-        run: conda activate
+        run: |
+          source $CONDA/bin/activate
+          conda install -c intel dpcpp_linux-64
+      - name: Run
+        run: |
+          source $CONDA/bin/activate
+          env
+          dpcpp --version
   
   windows-testing:
     runs-on: [windows-2019]
