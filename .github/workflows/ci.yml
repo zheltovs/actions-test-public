@@ -19,12 +19,9 @@ jobs:
     runs-on: [ubuntu-20.04]
     steps:
       - name: Init conda
-        run: conda init bash
       - name: Test
         run: |
-          sudo su - $(whoami)
-          conda activate
-          conda install -c intel dpcpp_linux-64
+          $CONDA/bin/conda install -c intel dpcpp_linux-64
   
   windows-testing:
     runs-on: [windows-2019]
