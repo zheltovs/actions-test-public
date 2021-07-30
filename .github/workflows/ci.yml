@@ -20,6 +20,7 @@ jobs:
     steps:
       - name: Test
         run: |
+          conda init bash
           conda activate
           conda install -c intel dpcpp_linux-64
   
