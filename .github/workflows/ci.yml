@@ -22,6 +22,8 @@ jobs:
         run: conda init bash
       - name: Test
         run: |
+          whoami
+          su - 
           conda activate
           conda install -c intel dpcpp_linux-64
   
