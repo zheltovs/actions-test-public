@@ -21,6 +21,8 @@ jobs:
       - name: Test
         run: |
           $CONDA/bin/conda install -c intel dpcpp_linux-64
+          export PATH=${CONDA}/bin:${CONDA}/include:${CONDA}/lib:${PATH}
+          dpcpp --version
   
   windows-testing:
     runs-on: [windows-2019]
