@@ -18,7 +18,6 @@ jobs:
   linux-testing:
     runs-on: [ubuntu-20.04]
     steps:
-      - name: Init conda
       - name: Test
         run: |
           $CONDA/bin/conda install -c intel dpcpp_linux-64
