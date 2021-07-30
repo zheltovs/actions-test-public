@@ -19,19 +19,9 @@ jobs:
     runs-on: [ubuntu-20.04]
     steps:
       - name: Test
-        run: |
-          $CONDA/bin/conda install -c intel dpcpp_linux-64
-          export PATH=$CONDA/bin:$CONDA/include:$CONDA/lib:$PATH
-          echo $PATH
-          export LD_LIBRARY_PATH=$CONDA/lib:$LD_LIBRARY_PATH
-          export LIBRARY_PATH=$CONDA/lib:$LIBRARY_PATH
-          export OCL_ICD_FILENAMES=libintelocl.so
-          dpcpp --version
-          git clone --depth 1 https://github.com/oneapi-src/onedpl.git
-          cd onedpl
-          mkdir build && cd build
-          cmake -DONEDPL_BACKEND=serial ..
-          make for_each.pass
+        run: conda init
+      - name: Test
+        run: conda activate
   
   windows-testing:
     runs-on: [windows-2019]
