@@ -24,6 +24,7 @@ jobs:
   
   my_test:
     runs-on: [ubuntu-20.04]
+    needs: [my_build]
     steps:
       - uses: actions/checkout@v2
       - name: Run testing
