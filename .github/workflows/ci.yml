@@ -23,6 +23,6 @@ jobs:
       - name: Run testing
         run: |
           cd onetbb && mkdir build && cd build
-          cmake -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+          cmake -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ..
           make -j2 test_parallel_for
           ctest -R "^test_parallel_for$"
