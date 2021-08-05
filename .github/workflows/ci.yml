@@ -3,6 +3,10 @@ name: CI
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      ONETBB_BRANCH:
+        required: true
     
 jobs:
   build:
@@ -11,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Get oneTBB
-        run: git clone --depth 1 https://github.com/oneapi-src/onetbb.git
+        run: git clone -b ${{ github.event.inputs.ONETBB_BRANCH }} --depth 1 https://github.com/oneapi-src/onetbb.git
       - name: Run testing
         run: |
           cd onetbb && mkdir build && cd build
