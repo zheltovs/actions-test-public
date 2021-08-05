@@ -18,5 +18,5 @@ jobs:
           cd onetbb && mkdir build && cd build
           cmake ..
           make -j2 test_parallel_for
-          ctest -R "^test_parallel_for"
+          ctest -R "^test_parallel_for$"
           
