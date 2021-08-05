@@ -18,6 +18,8 @@ jobs:
     strategy:
       matrix:
         build_type: [debug, relwithdebinfo]
+        exclude:
+          - build_type: relwithdebinfo
     steps:
       - name: Checkout repos
         uses: actions/checkout@v2
