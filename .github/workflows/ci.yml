@@ -3,16 +3,22 @@ name: CI
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      ONETBB_BRANCH:
+        required: true
+        default: master
 
 jobs:
   build-and-test:
     runs-on: [ubuntu-20.04]
     timeout-minutes: 60
+    if: github.event_name != 'push'
     steps:
       - name: Checkout repos
         uses: actions/checkout@v2
       - name: Get oneTBB
-        run: git clone --depth 1 https://github.com/oneapi-src/onetbb.git
+        run: git clone --depth 1 -b ${{ github.event.inputs.ONETBB_BRANCH }} https://github.com/oneapi-src/onetbb.git
       - name: Build and test
         run: |
           cd onetbb && mkdir build && cd build
