@@ -23,4 +23,4 @@ jobs:
     steps:
       - name: Checkout repos
         uses: actions/checkout@v2
-          
+      - run: echo ${{ matrix.test }}
