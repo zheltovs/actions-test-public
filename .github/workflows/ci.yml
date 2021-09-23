@@ -12,23 +12,15 @@ on:
 jobs:
   build-and-test:
     runs-on: [ubuntu-20.04]
-    name: test_build-type=${{ matrix.build_type }}
-    timeout-minutes: 60
-    if: github.event_name != 'push'
     strategy:
       matrix:
         build_type: [debug, relwithdebinfo]
-        exclude:
+        include:
+          - build_type: debug
+            test: aaaa
           - build_type: relwithdebinfo
+            test: bbbb
     steps:
       - name: Checkout repos
         uses: actions/checkout@v2
-      - name: Get oneTBB
-        run: git clone --depth 1 -b ${{ github.event.inputs.ONETBB_BRANCH }} https://github.com/oneapi-src/onetbb.git
-      - name: Build and test
-        run: |
-          cd onetbb && mkdir build && cd build
-          cmake -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ..
-          make -j2 test_parallel_for
-          ctest -R "^test_parallel_for$"
           
