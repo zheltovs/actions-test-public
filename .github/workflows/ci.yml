@@ -10,17 +10,19 @@ on:
         default: master
 
 jobs:
-  build-and-test:
+  build:
     runs-on: [ubuntu-20.04]
-    strategy:
-      matrix:
-        build_type: [debug, relwithdebinfo]
-        include:
-          - build_type: debug
-            test: aaaa
-          - build_type: relwithdebinfo
-            test: bbbb
     steps:
       - name: Checkout repos
         uses: actions/checkout@v2
       - run: echo ${{ matrix.test }}
+
+  tests:
+    runs-on: [ubuntu-20.04]
+    needs: [build]
+    if: ${{ !failure() }}
+    steps:
+      - name: Checkout repos
+        uses: actions/checkout@v2
+      - run: echo ${{ matrix.test }}
+  
