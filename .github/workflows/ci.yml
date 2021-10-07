@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run testing
         run: |
-          $ErrorActionPreference = 'stop'
+          $ErrorActionPreference = 'Stop'
           cmake ..
+          cmake --build .
           echo "test"
-  
