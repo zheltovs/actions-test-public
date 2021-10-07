@@ -16,9 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run testing
-        shell: powershell
+        shell: powershell -Command "& '{0}'"
         run: |
-          $ErrorActionPreference = 'Stop'
           cmake ..
           ctest
           echo "test"
