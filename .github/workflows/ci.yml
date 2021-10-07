@@ -16,8 +16,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run testing
-        shell: powershell -Command "$env:ErrorActionPreference = 'stop'; & '{0}'"
         run: |
+          $ErrorActionPreference = 'Stop'
+          $env:ErrorActionPreference = 'Stop'
           cmake ..
           ctest
           echo "test"
