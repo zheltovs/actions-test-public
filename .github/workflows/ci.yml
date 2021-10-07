@@ -10,28 +10,13 @@ on:
         default: master
 
 jobs:
-  failed_job:
-    runs-on: [ubuntu-20.04]
+  windows-testing:
+    runs-on: ['windows-2019']
+    timeout-minutes: 45
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Fail
-        run: exit 1
-
-  build:
-    runs-on: [ubuntu-20.04]
-    needs: [failed_job]
-    if: ${{ !cancelled() }}
-    steps:
-      - name: Checkout repos
-        uses: actions/checkout@v2
-      - run: echo ${{ matrix.test }}
-
-  tests:
-    runs-on: [ubuntu-20.04]
-    needs: [build]
-    steps:
-      - name: Checkout repos
-        uses: actions/checkout@v2
-      - run: echo ${{ matrix.test }}
+      - uses: actions/checkout@v2
+      - name: Run testing
+        run: |
+          cmake ..
+          echo "test"
   
