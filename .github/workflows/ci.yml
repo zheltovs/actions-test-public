@@ -11,7 +11,7 @@ on:
 
 jobs:
   windows-testing:
-    runs-on: ['windows-2019']
+    runs-on: [windows-2019]
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v2
@@ -22,3 +22,9 @@ jobs:
           cmake ..
           ctest
           echo "test"
+  
+  ubuntu-testing:
+    runs-on: [ubuntu-20.04]
+    steps:
+      - run: clang-format
+      
