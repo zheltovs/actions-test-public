@@ -33,6 +33,6 @@ jobs:
     steps:
       - run: |
           clang++ --version
-          $(brew --prefix llvm)/bin/clang
+          $(brew --prefix llvm)/bin/clang --version
   
       
