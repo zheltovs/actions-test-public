@@ -32,7 +32,8 @@ jobs:
     runs-on: [macos-10.15]
     steps:
       - run: |
-          clang++ --version
-          $(brew --prefix llvm)/bin/clang --version
+          brew install libomp
+          echo "int main() {}" > test.cpp
+          clang++ -fopenmp test.cpp
   
       
