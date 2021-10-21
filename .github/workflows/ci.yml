@@ -28,3 +28,9 @@ jobs:
     steps:
       - run: clang-format
       
+  macos-testing:
+    runs-on: [macos10.15]
+    steps:
+      - run: clang++ --version
+  
+      
