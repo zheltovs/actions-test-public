@@ -33,9 +33,12 @@ jobs:
     needs: [ubuntu-testing]
     if: github.event_name == 'push'
     steps:
-      - run: |
-          brew install libomp
-          echo "int main() {}" > test.cpp
-          clang++ -fopenmp test.cpp
-  
+      - run: exit 1
       
+  macos-testing-2:
+    runs-on: [macos-10.15]
+    needs: [macos-testing]
+    if: github.event_name == 'push' && !cancelled()
+    steps:
+      - run: echo "test"
+
