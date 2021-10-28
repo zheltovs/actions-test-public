@@ -38,7 +38,7 @@ jobs:
   macos-testing-2:
     runs-on: [macos-10.15]
     needs: [macos-testing]
-    if: github.event_name == 'push' && !failed()
+    if: github.event_name == 'push' && !failure()
     steps:
       - run: echo "test"
 
