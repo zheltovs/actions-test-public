@@ -8,6 +8,7 @@ on:
       ONETBB_BRANCH:
         required: true
         default: master
+  repository_dispatch:
 
 jobs:
   windows-testing:
