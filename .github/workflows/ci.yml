@@ -8,38 +8,22 @@ on:
       ONETBB_BRANCH:
         required: true
         default: master
-  repository_dispatch:
-
+        
 jobs:
-  windows-testing:
-    runs-on: [windows-2019]
-    timeout-minutes: 45
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run testing
-        run: |
-          $ErrorActionPreference = 'Stop'
-          $env:ErrorActionPreference = 'Stop'
-          cmake ..
-          ctest
-          echo "test"
-  
-  ubuntu-testing:
+  ubuntu-testing-1:
     runs-on: [ubuntu-20.04]
     steps:
-      - run: clang-format
-      
-  macos-testing:
-    runs-on: [macos-10.15]
-    needs: [ubuntu-testing]
-    if: github.event_name == 'push'
-    steps:
-      - run: exit 1
-      
-  macos-testing-2:
-    runs-on: [macos-10.15]
-    needs: [macos-testing]
-    if: github.event_name == 'push'
-    steps:
-      - run: echo "test"
+      - run: aaaa
 
+  ubuntu-testing-2:
+    runs-on: [ubuntu-20.04]
+    needs: [ubuntu-testing-1]
+    if: always()
+    steps:
+      - run: echo test
+
+  ubuntu-testing-3:
+    runs-on: [ubuntu-20.04]
+    needs: [ubuntu-testing-2]
+    steps:
+      - run: echo test
