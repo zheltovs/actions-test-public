@@ -13,7 +13,7 @@ jobs:
   ubuntu-testing-1:
     runs-on: [ubuntu-20.04]
     steps:
-      - run: aaaa
+      - run: echo ttest
 
   ubuntu-testing-2:
     runs-on: [ubuntu-20.04]
