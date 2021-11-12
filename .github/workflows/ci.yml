@@ -15,5 +15,8 @@ jobs:
     steps:
       - run: |
           wget https://registrationcenter-download.intel.com/akdlm/irc_nas/18212/m_cpp-compiler-classic_p_2021.4.0.248_offline.dmg
-          7z x m_cpp-compiler-classic_p_2021.4.0.248_offline.dmg
-          ls -la
+          mkdir installer
+          hdiutil attach -mountpoint ./installer/ m_cpp-compiler*.dmg
+          sudo ./installer/bootstrapper.app/Contents/MacOS/install.sh -c --action install --eula accept
+          source /opt/intel/oneapi/setvars.sh
+          icpc --version
