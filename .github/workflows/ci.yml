@@ -14,8 +14,8 @@ jobs:
     runs-on: [macos-10.15]
     steps:
       - run: |
-          python3 -m pip install openpyxl -y
-          python3 -m pip install tbb4py -y
+          python3 -m pip install openpyxl
+          python3 -m pip install tbb4py
           ls -la ~/
           ls -la ~/Library/Python/3.8/lib
           python3 -m tbb -h
