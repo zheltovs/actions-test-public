@@ -14,9 +14,8 @@ jobs:
     runs-on: [macos-10.15]
     steps:
       - run: |
-          wget https://registrationcenter-download.intel.com/akdlm/irc_nas/18212/m_cpp-compiler-classic_p_2021.4.0.248_offline.dmg
-          mkdir installer
-          hdiutil attach -mountpoint ./installer/ m_cpp-compiler*.dmg
-          sudo ./installer/bootstrapper.app/Contents/MacOS/install.sh -c --action install --eula accept
-          source /opt/intel/oneapi/setvars.sh
-          icpc --version
+          python3 -m pip install openpyxl
+          python3 -m pip install tbb4py
+          ls -la ~/
+          ls -la ~/Library/Python/3.8/lib
+          python3 -m tbb -h
