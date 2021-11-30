@@ -12,6 +12,8 @@ on:
 jobs:
   ubuntu-testing-1:
     runs-on: [macos-10.15]
+    env:
+      test: ${{ matrix.test }}
     steps:
       - run: |
           python3 -m pip install openpyxl
