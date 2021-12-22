@@ -11,13 +11,12 @@ on:
         
 jobs:
   ubuntu-testing-1:
-    runs-on: [macos-10.15]
-    env:
-      test: ${{ matrix.test }}
+    runs-on: [ubuntu-20.04]
+    strategy:
+      matrix:
+        var1: [test1, test2, test3]
+        var2: [test1, test2, test3]
+    container:
+      image: fedora:35
     steps:
-      - run: |
-          python3 -m pip install openpyxl
-          python3 -m pip install tbb4py
-          python3 -m pip show tbb4py
-          python3 -m tbb -h
-          
+      - uses: actions/checkout@v2
