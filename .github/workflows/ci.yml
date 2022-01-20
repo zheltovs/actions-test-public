@@ -10,14 +10,10 @@ on:
         default: master
         
 jobs:
-  ubuntu-testing-1:
-    runs-on: [ubuntu-20.04]
-    strategy:
-      matrix:
-        var1: [test1, test2, test3]
-        var2: [test1, test2, test3]
-    container:
-      image: fedora:35
+  windows-testing-1:
+    runs-on: [windows-latest]
     steps:
       - uses: actions/checkout@v2
-      - run: uname -a
+      - run: |
+          python -m pip install tbb4py
+          python -m tbb test
