@@ -20,7 +20,7 @@ jobs:
       device_second: ${{ steps.set-device.outputs.device_second }} 
     steps:
       - uses: actions/checkout@v2
-      - name: set-device
+      - id: set-device
         run: |
           if [[ ${{ matrix.test == 'value1' }} ]]; then 
             echo "::set-output name=device_first::true"
@@ -35,7 +35,7 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - name: set-matrix
+      - id: set-matrix
         run: |
           matrix='{\"include\":['
           if [[ '${{ needs.ubuntu-testing-1.outputs.device_first }}' == 'true' ]]; then
