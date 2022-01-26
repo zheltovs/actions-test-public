@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: set-device
         run: |
-          if [[ ${{ matrix.test == 'value1' ]]; then 
+          if [[ ${{ matrix.test == 'value1' }} ]]; then 
             echo "::set-output name=device-1::1"
           else
             echo "::set-output name=device-2::0"
