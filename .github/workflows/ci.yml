@@ -37,12 +37,12 @@ jobs:
     steps:
       - id: set-matrix
         run: |
-          matrix='{\"include\":['
+          matrix='{"include":['
           if [[ '${{ needs.ubuntu-testing-1.outputs.device_first }}' == 'true' ]]; then
-            matrix=${matrix}'{\"test\":\"value1\"}'
+            matrix=${matrix}'{"test": "value1"}'
           fi
           if [[ '${{ needs.ubuntu-testing-1.outputs.device_second }}' == 'false' ]]; then
-            matrix=${matrix}',{\"test\":\"value2\"}'
+            matrix=${matrix}',{"test": "value2"}'
           fi
           matrix=${matrix}']}'
           echo "::set-output name=matrix::${matrix}"
