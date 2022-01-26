@@ -32,3 +32,9 @@ jobs:
         with:
           name: oneTBB-html-docs-${{ env.GITHUB_SHA_SHORT }}
           path: html.tar.gz
+      - name: Save docs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v2.2.1
+        with:
+          name: test
+          path: /tmp/sphinx*
