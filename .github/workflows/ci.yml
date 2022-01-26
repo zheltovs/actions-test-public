@@ -16,17 +16,17 @@ jobs:
       matrix:
         test: [value1, value2]
     outputs:
-      device-1: ${{ steps.set-device.outputs.device-1 }}
-      device-2: ${{ steps.set-device.outputs.device-1 }} 
+      device_first: ${{ steps.set-device.outputs.device_first }}
+      device_second: ${{ steps.set-device.outputs.device_second }} 
     steps:
       - uses: actions/checkout@v2
       - name: set-device
         run: |
           if [[ ${{ matrix.test == 'value1' }} ]]; then 
-            echo "::set-output name=device-1::true"
+            echo "::set-output name=device_first::true"
             echo aaaa
           else
-            echo "::set-output name=device-2::false"
+            echo "::set-output name=device_second::false"
           fi
 
   aggregate:
@@ -38,10 +38,10 @@ jobs:
       - name: set-matrix
         run: |
           matrix='{\"include\":['
-          if [[ ${{ needs.ubuntu-testing-1.outputs.device-1 }} == 'true' ]]; then
+          if [[ '${{ needs.ubuntu-testing-1.outputs.device_first }}' == 'true' ]]; then
             matrix=${matrix}'{\"test\":\"value1\"=}'
           fi
-          if [[ ${{ needs.ubuntu-testing-1.outputs.device-2 }} == 'false' ]]; then
+          if [[ '${{ needs.ubuntu-testing-1.outputs.device_second }}' == 'false' ]]; then
             matrix=${matrix}',{\"test\":\"value2\"=}'
           fi
           echo "::set-output name=matrix::${matrix}"
