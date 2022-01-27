@@ -11,7 +11,7 @@ on:
 jobs:
   ubuntu-testing-1:
     runs-on: [ubuntu-latest-aaa]
-    if: ${{!failure()}} && ${{!cancelled()}}
+    if: ${{ !failure() && !cancelled() }}
     strategy:
       matrix:
         test: [value1, value2]
