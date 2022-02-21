@@ -12,7 +12,7 @@ on:
 jobs:
   test1:
     runs-on: [ubuntu-latest]
-    if: github.event_name != 'schedule'
+    if: github.event_name == 'schedule'
     steps:
       - name: Test
         run: |
@@ -26,3 +26,14 @@ jobs:
           name: test
           path: test
           retention-days: 2
+          
+  test2:
+    runs-on: [ubuntu-latest]
+    needs: [test1]
+    steps:
+      - name: Test
+        run: |
+          mkdir test
+          echo "aa" > test/run.log
+          echo "aa" > test/run2.log
+
