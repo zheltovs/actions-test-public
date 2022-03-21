@@ -18,4 +18,4 @@ jobs:
         - /path/to/file:/path/to/file
     steps:
       - uses: actions/checkout@v2
-      - run: ls -la
+      - run: ls -la /path/to/file
