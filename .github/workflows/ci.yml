@@ -12,9 +12,10 @@ on:
 jobs:
   test1:
     runs-on: [ubuntu-latest]
+    container:
+      image: ubuntu:latest
+      volumes:
+        - /path/to/file:/path/to/file
     steps:
-      - run: |
-          jfrog -v || true
-      - uses: jfrog/setup-jfrog-cli@v2
-      - run: |
-          jfrog -v
+      - uses: actions/checkout@v2
+      - run: ls -la
