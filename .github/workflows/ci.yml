@@ -12,7 +12,7 @@ on:
 jobs:
   test1:
     runs-on: [ubuntu-latest]
-    if: matrix.test == 'aaa'
     steps:
       - uses: actions/checkout@v2
-      - run: ls
+      - if: matrix.test == 'aaa'
+        run: ls
