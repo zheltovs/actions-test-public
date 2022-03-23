@@ -12,10 +12,7 @@ on:
 jobs:
   test1:
     runs-on: [ubuntu-latest]
-    container:
-      image: ubuntu:latest
-      volumes:
-        - /path/to/file:/path/to/file
+    if: ${{ !contains(matrix.label, 'arm64') }}
     steps:
       - uses: actions/checkout@v2
-      - run: ls -la /path/to/file
+      - run: ls
