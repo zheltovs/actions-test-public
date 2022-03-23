@@ -12,7 +12,7 @@ on:
 jobs:
   test1:
     runs-on: [ubuntu-latest]
-    if: ${{ !contains(matrix.label, 'arm64') }}
+    if: ${{ !contains(${{ matrix.label }}, 'arm64') }}
     steps:
       - uses: actions/checkout@v2
       - run: ls
