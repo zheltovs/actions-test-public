@@ -12,10 +12,9 @@ on:
 jobs:
   test1:
     runs-on: [ubuntu-latest]
-    strategy:
-      matrix:
-        label: ['aaa-arm64']
     steps:
       - uses: actions/checkout@v2
-      - if: ${{ !contains(matrix.label, 'arm64') }}
+      - uses: jfrog/setup-jfrog-cli@v2
+      - name: test
         run: ls
+      - uses: jfrog/setup-jfrog-cli@v2
