@@ -17,6 +17,5 @@ jobs:
           test1: ""
           test2:
         run: |
-          if [ -z ${test1} ]; then echo "test1"; fi
-          if [ -z ${test2} ]; then echo "test2"; fi
-          if [ -z ${test3} ]; then echo "test3"; fi
+          chmod +x ./test.sh
+          ./test.sh $test1 $test2 $test3
