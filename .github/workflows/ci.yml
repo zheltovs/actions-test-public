@@ -13,8 +13,10 @@ jobs:
   test1:
     runs-on: [ubuntu-latest]
     steps:
-      - uses: actions/checkout@v2
-      - uses: jfrog/setup-jfrog-cli@v2
-      - name: test
-        run: ls
-      - uses: jfrog/setup-jfrog-cli@v2
+      - env:
+          test1: ""
+          test2:
+        run: |
+          if [ -z ${test1} ]; then echo "test1"; fi
+          if [ -z ${test2} ]; then echo "test2"; fi
+          if [ -z ${test3} ]; then echo "test3"; fi
