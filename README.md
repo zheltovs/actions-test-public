@@ -1,2 +1,2 @@
 # actions-test-public
-Repository for testing GitHub Actions 
+Repository for testing GitHub Actions
